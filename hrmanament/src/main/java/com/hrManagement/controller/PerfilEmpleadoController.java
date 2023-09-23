@@ -29,26 +29,15 @@ public class PerfilEmpleadoController {
 
     @PostMapping("/agregar")
     public ResponseEntity<String> agregarPerfilEmpleado(@RequestBody PerfilEmpleadoDTO perfilEmpleadoDTO) {
-        Optional<Empleado> empleadoOptional = empleadoRepository.findById(perfilEmpleadoDTO.getCodigo());
-
-        if (empleadoOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se puede agregar el perfil de empleado. El empleado no existe.");
-        }
-
-        PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
-        perfilEmpleado.setCodigo(perfilEmpleadoDTO.getCodigo());
-        perfilEmpleado.setNombre(perfilEmpleadoDTO.getNombre());
-        perfilEmpleado.setHabilidades(perfilEmpleadoDTO.getHabilidades());
-        perfilEmpleado.setExperiencia(perfilEmpleadoDTO.getExperiencia());
-        perfilEmpleado.setCertificaciones(perfilEmpleadoDTO.getCertificaciones());
-
-        perfilEmpleadoRepository.save(perfilEmpleado);
-
-        boolean guardado = perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleado);
-        if (guardado) {
-            return ResponseEntity.status(HttpStatus.CREATED).body("Empleado agregado correctamente");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No se pudo agregar el empleado");
+        try {
+            boolean resultado = perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO);
+            if (resultado) {
+                return ResponseEntity.ok("Perfil de empleado agregado correctamente");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No se pudo agregar el perfil de empleado.");
+            }
+        } catch (PerfilEmpleadoLogica.EmpleadoNoExisteException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se puede crear el perfil ya que no hay un empleado con ese código");
         }
     }
 
@@ -68,5 +57,17 @@ public class PerfilEmpleadoController {
     public List<PerfilEmpleado> obtenerTodosLosPerfilesDeEmpleados() {
         return perfilEmpleadoLogica.obtenerTodosLosPerfilesDeEmpleados();
     }
-
+    @DeleteMapping("/eliminar/{codigo}")
+    public ResponseEntity<String> eliminarPerfilEmpleado(@PathVariable int codigo) {
+        try {
+            boolean resultado = perfilEmpleadoLogica.eliminarPerfilEmpleado(codigo);
+            if (resultado) {
+                return ResponseEntity.ok("Perfil del empleado desactivado correctamente");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No se pudo desactivar el perfil del empleado.");
+            }
+        } catch (PerfilEmpleadoLogica.EmpleadoNoExisteException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se puede desactivar el perfil del empleado ya que no existe.");
+        }
+    }
 }

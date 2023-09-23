@@ -6,6 +6,7 @@ import com.hrManagement.repository.EmpleadoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmpleadoLogica {
@@ -68,9 +69,16 @@ public class EmpleadoLogica {
         return false;
     }
     public boolean eliminarEmpleado(int codigo) {
-        if (empleadoRepository.existsById(codigo)) {
+        Optional<Empleado> empleadoOptional = empleadoRepository.findById(codigo);
+        Empleado empleado = new Empleado();
+        empleado.setEliminar(false);
+
+        if (empleadoOptional.isPresent()) {
+            empleado = empleadoOptional.get();
+            empleado.setEliminar(true); // Cambia el valor de la columna "eliminar" a false
+
             try {
-                empleadoRepository.deleteById(codigo);
+                empleadoRepository.save(empleado);
                 return true;
             } catch (Exception e) {
                 // Manejo de errores, puedes personalizarlo según tus necesidades
@@ -78,7 +86,8 @@ public class EmpleadoLogica {
                 return false;
             }
         }
-        return false;
+
+        return false; // No se encontró el empleado con el código dado
     }
 
 

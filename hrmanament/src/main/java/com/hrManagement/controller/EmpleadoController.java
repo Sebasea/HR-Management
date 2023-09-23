@@ -1,6 +1,7 @@
 package com.hrManagement.controller;
 
 import com.hrManagement.controller.dto.EmpleadoDTO;
+import com.hrManagement.logica.PerfilEmpleadoLogica;
 import com.hrManagement.modelo.Empleado;
 import com.hrManagement.logica.EmpleadoLogica;
 import com.hrManagement.repository.EmpleadoRepository;
@@ -62,11 +63,15 @@ public class EmpleadoController {
     }
     @DeleteMapping("/eliminar/{codigo}")
     public ResponseEntity<String> eliminarEmpleado(@PathVariable int codigo) {
-        boolean eliminado = empleadoLogica.eliminarEmpleado(codigo);
-        if (eliminado) {
-            return ResponseEntity.ok("Empleado eliminado correctamente");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empleado no encontrado");
+        try {
+            boolean resultado = empleadoLogica.eliminarEmpleado(codigo);
+            if (resultado) {
+                return ResponseEntity.ok("Empleado desactivado correctamente");
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No se pudo desactivar al empleado.");
+            }
+        } catch (PerfilEmpleadoLogica.EmpleadoNoExisteException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No se puede desactivar el empleado ya que no existe.");
         }
     }
 }
