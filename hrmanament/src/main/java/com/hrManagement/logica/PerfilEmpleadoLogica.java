@@ -24,10 +24,12 @@ public class PerfilEmpleadoLogica {
 
     public boolean guardarPerfilEmpleado(PerfilEmpleadoDTO perfilEmpleadoDTO) {
         Optional<Empleado> empleadoOptional = empleadoRepository.findById(perfilEmpleadoDTO.getCodigo());
+        PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
+        perfilEmpleado.setEliminar(false);
         if (empleadoOptional.isEmpty()) {
             throw new EmpleadoNoExisteException("No se puede agregar el perfil de empleado. El empleado no existe.");
         }
-        PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
+        perfilEmpleado = new PerfilEmpleado();
         perfilEmpleado.setCodigo(perfilEmpleadoDTO.getCodigo());
         perfilEmpleado.setNombre(perfilEmpleadoDTO.getNombre());
         perfilEmpleado.setHabilidades(perfilEmpleadoDTO.getHabilidades());
@@ -57,10 +59,9 @@ public class PerfilEmpleadoLogica {
     }
     public boolean eliminarPerfilEmpleado(int codigo) {
         Optional<PerfilEmpleado> perfilEmpleadoOptional = perfilEmpleadoRepository.findById(codigo);
-
         if (perfilEmpleadoOptional.isPresent()) {
             PerfilEmpleado perfilEmpleado = perfilEmpleadoOptional.get();
-            perfilEmpleado.setEliminar(false); // Cambia el valor de la columna "eliminar" a false
+            perfilEmpleado.setEliminar(true); // Cambia el valor de la columna "eliminar" a false
 
             try {
                 perfilEmpleadoRepository.save(perfilEmpleado);
@@ -72,6 +73,6 @@ public class PerfilEmpleadoLogica {
             }
         }
 
-        return false; // No se encontró el perfil del empleado con el código dado
+        return false; // No se encontró el perfil del empleado con el código dado    }
     }
 }
