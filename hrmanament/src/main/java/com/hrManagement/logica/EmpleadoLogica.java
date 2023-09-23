@@ -16,14 +16,26 @@ public class EmpleadoLogica {
         this.empleadoRepository = empleadoRepository;
     }
 
-    public boolean guardarEmpleado(Empleado empleado) {
+    public boolean guardarEmpleado(EmpleadoDTO empleadoDTO) {
+        if (empleadoRepository.findById(empleadoDTO.getCodigo()).isPresent()) {
+            return false; // El empleado ya existe, no se puede guardar de nuevo
+        }
+
+        Empleado empleado = new Empleado();
+        empleado.setCodigo(empleadoDTO.getCodigo());
+        empleado.setNombre(empleadoDTO.getNombre());
+        empleado.setEdad(empleadoDTO.getEdad());
+        empleado.setRol(empleadoDTO.getRol());
+        empleado.setEmail(empleadoDTO.getEmail());
+        empleado.setNumeroTelefonico(empleadoDTO.getNumeroTelefonico());
+
         try {
             empleadoRepository.save(empleado);
-            return true;
+            return true; // El empleado se ha guardado exitosamente
         } catch (Exception e) {
             // Manejo de errores, puedes personalizarlo según tus necesidades
             e.printStackTrace();
-            return false;
+            return false; // Hubo un error al guardar el empleado
         }
     }
 
@@ -49,14 +61,12 @@ public class EmpleadoLogica {
                 empleado.setRol(empleadoActualizado.getRol());
                 empleado.setEmail(empleadoActualizado.getEmail());
                 empleado.setNumeroTelefonico(empleadoActualizado.getNumeroTelefonico());
-
-                guardarEmpleado(empleado); // Llama al método guardarEmpleado para guardar los cambios
+                empleadoRepository.save(empleado);
                 return true;
             }
         }
         return false;
     }
-
     public boolean eliminarEmpleado(int codigo) {
         if (empleadoRepository.existsById(codigo)) {
             try {
@@ -70,4 +80,6 @@ public class EmpleadoLogica {
         }
         return false;
     }
+
+
 }
