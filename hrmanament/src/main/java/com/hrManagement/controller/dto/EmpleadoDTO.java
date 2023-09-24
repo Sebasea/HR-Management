@@ -1,4 +1,5 @@
 package com.hrManagement.controller.dto;
+import com.hrManagement.logica.RolEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,8 @@ public class EmpleadoDTO {
     private int codigo;
     private String nombre;
     private int edad;
-    private String rol;
+    private RolEnum rol;
     private String email;
     private int numeroTelefonico;
+    private String responsabilidades;
 }

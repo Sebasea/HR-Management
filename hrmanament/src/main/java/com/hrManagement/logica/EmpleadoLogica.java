@@ -26,9 +26,10 @@ public class EmpleadoLogica {
         empleado.setCodigo(empleadoDTO.getCodigo());
         empleado.setNombre(empleadoDTO.getNombre());
         empleado.setEdad(empleadoDTO.getEdad());
-        empleado.setRol(empleadoDTO.getRol());
+        empleado.setRol(RolEnum.valueOf(empleadoDTO.getRol().name()));
         empleado.setEmail(empleadoDTO.getEmail());
         empleado.setNumeroTelefonico(empleadoDTO.getNumeroTelefonico());
+        empleado.setResponsabilidades(empleado.getResponsabilidades());
 
         try {
             empleadoRepository.save(empleado);
@@ -44,8 +45,8 @@ public class EmpleadoLogica {
         return empleadoRepository.findById(id).orElse(null);
     }
 
-    public List<Empleado> obtenerEmpleadosPorCargo(String rol, int edad) {
-        return empleadoRepository.findByRolAndEdadLessThanEqual(rol, edad);
+    public List<Empleado> obtenerEmpleadosPorCargo(Enum rol) {
+        return empleadoRepository.findByRol(rol);
     }
 
     public List<Empleado> obtenerTodosLosEmpleados() {
@@ -59,9 +60,10 @@ public class EmpleadoLogica {
                 // Actualiza los campos del empleado con los del DTO
                 empleado.setNombre(empleadoActualizado.getNombre());
                 empleado.setEdad(empleadoActualizado.getEdad());
-                empleado.setRol(empleadoActualizado.getRol());
+                empleado.setRol(RolEnum.valueOf(empleadoActualizado.getRol().name()));
                 empleado.setEmail(empleadoActualizado.getEmail());
                 empleado.setNumeroTelefonico(empleadoActualizado.getNumeroTelefonico());
+                empleado.setResponsabilidades(empleadoActualizado.getResponsabilidades());
                 empleadoRepository.save(empleado);
                 return true;
             }

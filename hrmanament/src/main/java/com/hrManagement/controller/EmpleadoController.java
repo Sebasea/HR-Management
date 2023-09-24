@@ -2,6 +2,7 @@ package com.hrManagement.controller;
 
 import com.hrManagement.controller.dto.EmpleadoDTO;
 import com.hrManagement.logica.PerfilEmpleadoLogica;
+import com.hrManagement.logica.RolEnum;
 import com.hrManagement.modelo.Empleado;
 import com.hrManagement.logica.EmpleadoLogica;
 import com.hrManagement.repository.EmpleadoRepository;
@@ -44,8 +45,8 @@ public class EmpleadoController {
     }
 
     @GetMapping
-    public List<Empleado> obtenerEmpleadosPorCargo(@RequestParam String rol, @RequestParam int edad) {
-        return empleadoLogica.obtenerEmpleadosPorCargo(rol, edad);
+    public List<Empleado> obtenerEmpleadosPorCargo(@RequestParam Enum rol) {
+        return empleadoLogica.obtenerEmpleadosPorCargo(RolEnum.valueOf(String.valueOf(rol)));
     }
 
     @GetMapping("/todos")
