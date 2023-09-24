@@ -24,12 +24,13 @@ private String certificaciones;
 @Column
 boolean eliminar;
 
-  public PerfilEmpleado(int codigo, String nombre, String habilidades, String experiencia, String certificaciones) {
+  public PerfilEmpleado(int codigo, String nombre, String habilidades, String experiencia, String certificaciones, boolean eliminar) {
     this.codigo = codigo;
     this.nombre = nombre;
     this.habilidades = habilidades;
     this.experiencia = experiencia;
     this.certificaciones = certificaciones;
+    this.eliminar = eliminar;
   }
 
   public PerfilEmpleado() {

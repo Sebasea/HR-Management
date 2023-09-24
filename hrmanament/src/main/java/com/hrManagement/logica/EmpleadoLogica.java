@@ -30,6 +30,7 @@ public class EmpleadoLogica {
         empleado.setEmail(empleadoDTO.getEmail());
         empleado.setNumeroTelefonico(empleadoDTO.getNumeroTelefonico());
         empleado.setResponsabilidades(empleado.getResponsabilidades());
+        empleado.setEliminar(false);
 
         try {
             empleadoRepository.save(empleado);

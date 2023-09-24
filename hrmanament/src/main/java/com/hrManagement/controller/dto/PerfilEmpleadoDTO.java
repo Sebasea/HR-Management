@@ -13,4 +13,5 @@ public class PerfilEmpleadoDTO {
     private String habilidades;
     private String experiencia;
     private String certificaciones;
+    private boolean eliminar;
 }

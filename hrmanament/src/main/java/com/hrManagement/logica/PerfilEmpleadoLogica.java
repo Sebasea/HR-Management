@@ -35,6 +35,7 @@ public class PerfilEmpleadoLogica {
         perfilEmpleado.setHabilidades(perfilEmpleadoDTO.getHabilidades());
         perfilEmpleado.setExperiencia(perfilEmpleadoDTO.getExperiencia());
         perfilEmpleado.setCertificaciones(perfilEmpleadoDTO.getCertificaciones());
+        perfilEmpleado.setEliminar(false);
 
         try {
             perfilEmpleadoRepository.save(perfilEmpleado);
