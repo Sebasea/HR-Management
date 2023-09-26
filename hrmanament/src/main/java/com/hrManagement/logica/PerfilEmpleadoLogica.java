@@ -5,8 +5,6 @@ import com.hrManagement.modelo.Empleado;
 import com.hrManagement.modelo.PerfilEmpleado;
 import com.hrManagement.repository.EmpleadoRepository;
 import com.hrManagement.repository.PerfilEmpleadoRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,25 +15,40 @@ public class PerfilEmpleadoLogica {
 
     private final PerfilEmpleadoRepository perfilEmpleadoRepository;
     private final EmpleadoRepository empleadoRepository;
+
     public PerfilEmpleadoLogica(PerfilEmpleadoRepository perfilEmpleadoRepository, EmpleadoRepository empleadoRepository) {
         this.perfilEmpleadoRepository = perfilEmpleadoRepository;
         this.empleadoRepository = empleadoRepository;
     }
+    public class CamposVaciosException extends RuntimeException {
+
+        public CamposVaciosException(String message) {
+            super(message);
+        }
+    }
 
     public boolean guardarPerfilEmpleado(PerfilEmpleadoDTO perfilEmpleadoDTO) {
-        Optional<Empleado> empleadoOptional = empleadoRepository.findById(perfilEmpleadoDTO.getCodigo());
-        PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
-        perfilEmpleado.setEliminar(false);
-        if (empleadoOptional.isEmpty()) {
-            throw new EmpleadoNoExisteException("No se puede agregar el perfil de empleado. El empleado no existe.");
+        // Verifica si alguno de los campos del DTO está vacío o nulo
+        if (perfilEmpleadoDTO.getNombre() == null || perfilEmpleadoDTO.getNombre().isEmpty()
+                || perfilEmpleadoDTO.getHabilidades() == null || perfilEmpleadoDTO.getHabilidades().isEmpty()
+                || perfilEmpleadoDTO.getExperiencia() == null || perfilEmpleadoDTO.getExperiencia().isEmpty()
+                || perfilEmpleadoDTO.getCertificaciones() == null || perfilEmpleadoDTO.getCertificaciones().isEmpty()) {
+            throw new CamposVaciosException("Los campos no pueden estar vacíos");
         }
-        perfilEmpleado = new PerfilEmpleado();
+
+        Optional<Empleado> empleadoOptional = empleadoRepository.findById(perfilEmpleadoDTO.getCodigo());
+
+        if (empleadoOptional.isEmpty()) {
+            throw new EmpleadoNoExisteException();
+        }
+
+        PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
         perfilEmpleado.setCodigo(perfilEmpleadoDTO.getCodigo());
         perfilEmpleado.setNombre(perfilEmpleadoDTO.getNombre());
         perfilEmpleado.setHabilidades(perfilEmpleadoDTO.getHabilidades());
         perfilEmpleado.setExperiencia(perfilEmpleadoDTO.getExperiencia());
         perfilEmpleado.setCertificaciones(perfilEmpleadoDTO.getCertificaciones());
-        perfilEmpleado.setEliminar(false);
+        perfilEmpleado.setEliminar(false); // Cambiar el valor de la columna "eliminar" si es necesario
 
         try {
             perfilEmpleadoRepository.save(perfilEmpleado);
@@ -46,9 +59,10 @@ public class PerfilEmpleadoLogica {
             return false;
         }
     }
-    public class EmpleadoNoExisteException extends RuntimeException {
-        public EmpleadoNoExisteException(String message) {
-            super(message);
+
+    public static class EmpleadoNoExisteException extends RuntimeException {
+        public EmpleadoNoExisteException() {
+            super("No existe Empleado");
         }
     }
     public PerfilEmpleado obtenerPerfilEmpleadoPorID(int id) {
