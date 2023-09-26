@@ -93,5 +93,9 @@ public class EmpleadoLogica {
         return false; // No se encontró el empleado con el código dado
     }
 
-
+    public static class EmpleadoNoExisteException extends RuntimeException {
+        public EmpleadoNoExisteException() {
+            super("No existe Empleado");
+        }
+    }
 }
