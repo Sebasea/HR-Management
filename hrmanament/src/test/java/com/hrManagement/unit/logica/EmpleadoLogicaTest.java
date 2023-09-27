@@ -1,4 +1,4 @@
-package com.hrManagement;
+package com.hrManagement.unit.logica;
 
 import com.hrManagement.controller.dto.EmpleadoDTO;
 import com.hrManagement.logica.EmpleadoLogica;
@@ -6,8 +6,12 @@ import com.hrManagement.modelo.Empleado;
 import com.hrManagement.repository.EmpleadoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +22,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class EmpleadoLogicaTest {
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
+@ActiveProfiles(profiles = "test")
+class EmpleadoLogicaTest {
 
     @Mock
     private EmpleadoRepository empleadoRepository;
