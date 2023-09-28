@@ -19,6 +19,7 @@ repositories {
 }
 pitest {
 	junit5PluginVersion = '1.0.0'
+
 }
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -32,25 +33,26 @@ dependencies {
 }
 
 test {
-	finalizedBy jacocoTestReport // report is always generated after tests run
-}
-jacocoTestReport {
-	dependsOn test // tests are required to run before generating the report
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
 }
 
 jacoco {
-	toolVersion = "0.8.9"
-	reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+	toolVersion = "0.8.8"
 }
+
 
 jacocoTestReport {
-	reports {
-		xml.required = false
-		csv.required = false
-		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+	dependsOn test
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: [
+					'com/hrManagement/modelo/*',
+					'com/hrManagement/controller/dto'
+			])
+		}))
 	}
 }
-
 tasks.named('test') {
 	useJUnitPlatform()
 }
