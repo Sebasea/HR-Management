@@ -14,12 +14,13 @@ public class EmpleadoLogica {
     private final EmpleadoRepository empleadoRepository;
 
     public EmpleadoLogica(EmpleadoRepository empleadoRepository) {
+
         this.empleadoRepository = empleadoRepository;
     }
 
     public boolean guardarEmpleado(EmpleadoDTO empleadoDTO) {
         if (empleadoRepository.findById(empleadoDTO.getCodigo()).isPresent()) {
-            return false; // El empleado ya existe, no se puede guardar de nuevo
+            return false;
         }
 
         Empleado empleado = new Empleado();
@@ -34,11 +35,10 @@ public class EmpleadoLogica {
 
         try {
             empleadoRepository.save(empleado);
-            return true; // El empleado se ha guardado exitosamente
+            return true;
         } catch (Exception e) {
-            // Manejo de errores, puedes personalizarlo según tus necesidades
             e.printStackTrace();
-            return false; // Hubo un error al guardar el empleado
+            return false;
         }
     }
 
@@ -78,19 +78,18 @@ public class EmpleadoLogica {
 
         if (empleadoOptional.isPresent()) {
             empleado = empleadoOptional.get();
-            empleado.setEliminar(true); // Cambia el valor de la columna "eliminar" a false
+            empleado.setEliminar(true);
 
             try {
                 empleadoRepository.save(empleado);
                 return true;
             } catch (Exception e) {
-                // Manejo de errores, puedes personalizarlo según tus necesidades
                 e.printStackTrace();
                 return false;
             }
         }
 
-        return false; // No se encontró el empleado con el código dado
+        return false;
     }
 
     public static class EmpleadoNoExisteException extends RuntimeException {

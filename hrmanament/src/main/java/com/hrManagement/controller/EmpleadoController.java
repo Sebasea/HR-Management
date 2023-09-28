@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/empleados") // Establecemos una ruta base para todos los endpoints
+@RequestMapping("/empleados")
 public class EmpleadoController {
 
     private final EmpleadoLogica empleadoLogica;

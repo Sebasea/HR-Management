@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.128s</div>
+<div class="counter">0.153s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,47 +79,47 @@
 </thead>
 <tr>
 <td class="success">agregarPerfilEmpleado_EmpleadoNoExisteException()</td>
-<td class="success">0.025s</td>
+<td class="success">0.016s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">agregarPerfilEmpleado_InternalServerError()</td>
-<td class="success">0.008s</td>
+<td class="success">0.013s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">agregarPerfilEmpleado_Success()</td>
-<td class="success">0.010s</td>
+<td class="success">0.012s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">eliminarPerfilEmpleado_EmpleadoNoExisteException()</td>
-<td class="success">0.037s</td>
+<td class="success">0.051s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">eliminarPerfilEmpleado_InternalServerError()</td>
-<td class="success">0.010s</td>
+<td class="success">0.012s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">eliminarPerfilEmpleado_Success()</td>
-<td class="success">0.009s</td>
+<td class="success">0.012s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">obtenerDatosEmpleadoPorID_NotFound()</td>
-<td class="success">0.010s</td>
+<td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">obtenerDatosEmpleadoPorID_Success()</td>
-<td class="success">0.010s</td>
+<td class="success">0.014s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">obtenerTodosLosPerfilesDeEmpleados_Success()</td>
-<td class="success">0.009s</td>
+<td class="success">0.012s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -127,12 +127,12 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2023-09-27 21:43:02.149  INFO 18408 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.hrManagement.unit.controller.PerfilEmpleadoControllerTest], using SpringBootContextLoader
-2023-09-27 21:43:02.150  INFO 18408 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.hrManagement.unit.controller.PerfilEmpleadoControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2023-09-27 21:43:02.151  INFO 18408 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.hrManagement.unit.controller.PerfilEmpleadoControllerTest]: PerfilEmpleadoControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2023-09-27 21:43:02.155  INFO 18408 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.hrManagement.HrmanamentApplication for test class com.hrManagement.unit.controller.PerfilEmpleadoControllerTest
-2023-09-27 21:43:02.157  INFO 18408 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2023-09-27 21:43:02.158  INFO 18408 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4d71da5a, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6467ce1a, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@5637ed9d, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@45174eba, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6f7ef48, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5cbae692, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3588b39d, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4a154908, org.springframework.test.context.event.EventPublishingTestExecutionListener@732172ad, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7824842d, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@840d4ef, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@687d91e6, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@10b1225e, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@4c68d989, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@42019b47]
+<pre>2023-09-28 07:04:01.423  INFO 17268 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.hrManagement.unit.controller.PerfilEmpleadoControllerTest], using SpringBootContextLoader
+2023-09-28 07:04:01.426  INFO 17268 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.hrManagement.unit.controller.PerfilEmpleadoControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-09-28 07:04:01.427  INFO 17268 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.hrManagement.unit.controller.PerfilEmpleadoControllerTest]: PerfilEmpleadoControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-09-28 07:04:01.443  INFO 17268 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.hrManagement.HrmanamentApplication for test class com.hrManagement.unit.controller.PerfilEmpleadoControllerTest
+2023-09-28 07:04:01.448  INFO 17268 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-09-28 07:04:01.450  INFO 17268 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@550cfdc6, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@312452eb, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@4d71da5a, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6467ce1a, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5637ed9d, org.springframework.test.context.support.DirtiesContextTestExecutionListener@45174eba, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6f7ef48, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@5cbae692, org.springframework.test.context.event.EventPublishingTestExecutionListener@3588b39d, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4a154908, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@732172ad, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@7824842d, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@840d4ef, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@687d91e6, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@10b1225e]
 </pre>
 </span>
 </div>
@@ -144,7 +144,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.2.1</a> at 27/09/2023, 9:43:03 p. m.</p>
+<a href="http://www.gradle.org">Gradle 8.2.1</a> at 28/09/2023, 7:04:02 a. m.</p>
 </div>
 </div>
 </body>

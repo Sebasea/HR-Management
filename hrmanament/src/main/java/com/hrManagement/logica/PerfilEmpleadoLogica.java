@@ -28,7 +28,6 @@ public class PerfilEmpleadoLogica {
     }
 
     public boolean guardarPerfilEmpleado(PerfilEmpleadoDTO perfilEmpleadoDTO) {
-        // Verifica si alguno de los campos del DTO está vacío o nulo
         if (perfilEmpleadoDTO.getNombre() == null || perfilEmpleadoDTO.getNombre().isEmpty()
                 || perfilEmpleadoDTO.getHabilidades() == null || perfilEmpleadoDTO.getHabilidades().isEmpty()
                 || perfilEmpleadoDTO.getExperiencia() == null || perfilEmpleadoDTO.getExperiencia().isEmpty()
@@ -48,13 +47,12 @@ public class PerfilEmpleadoLogica {
         perfilEmpleado.setHabilidades(perfilEmpleadoDTO.getHabilidades());
         perfilEmpleado.setExperiencia(perfilEmpleadoDTO.getExperiencia());
         perfilEmpleado.setCertificaciones(perfilEmpleadoDTO.getCertificaciones());
-        perfilEmpleado.setEliminar(false); // Cambiar el valor de la columna "eliminar" si es necesario
+        perfilEmpleado.setEliminar(false);
 
         try {
             perfilEmpleadoRepository.save(perfilEmpleado);
             return true;
         } catch (Exception e) {
-            // Manejo de errores, puedes personalizarlo según tus necesidades
             e.printStackTrace();
             return false;
         }
@@ -76,18 +74,17 @@ public class PerfilEmpleadoLogica {
         Optional<PerfilEmpleado> perfilEmpleadoOptional = perfilEmpleadoRepository.findById(codigo);
         if (perfilEmpleadoOptional.isPresent()) {
             PerfilEmpleado perfilEmpleado = perfilEmpleadoOptional.get();
-            perfilEmpleado.setEliminar(true); // Cambia el valor de la columna "eliminar" a false
+            perfilEmpleado.setEliminar(true);
 
             try {
                 perfilEmpleadoRepository.save(perfilEmpleado);
                 return true;
             } catch (Exception e) {
-                // Manejo de errores, puedes personalizarlo según tus necesidades
                 e.printStackTrace();
                 return false;
             }
         }
 
-        return false; // No se encontró el perfil del empleado con el código dado    }
+        return false;
     }
 }

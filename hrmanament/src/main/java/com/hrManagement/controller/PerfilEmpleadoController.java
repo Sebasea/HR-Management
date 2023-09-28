@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/perfilEmpleado") // Establecemos una ruta base para todos los endpoints
+@RequestMapping("/perfilEmpleado")
 public class PerfilEmpleadoController {
 
     private final PerfilEmpleadoLogica perfilEmpleadoLogica;
