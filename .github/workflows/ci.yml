@@ -9,6 +9,7 @@ permissions:
 
 
 jobs:
+  jacoco-java-gradle:
   build:
     runs-on: ubuntu-latest
     steps:
