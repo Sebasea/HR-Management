@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.040s</div>
+<div class="counter">0.077s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,57 +79,57 @@
 </thead>
 <tr>
 <td class="success">testEliminarPerfilEmpleado()</td>
-<td class="success">0.003s</td>
+<td class="success">0.007s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testEliminarPerfilEmpleadoWithNonexistentID()</td>
-<td class="success">0.003s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGuardarPerfilEmpleado()</td>
-<td class="success">0.005s</td>
+<td class="success">0.006s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGuardarPerfilEmpleadoWithEmptyCertificaciones()</td>
-<td class="success">0.005s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGuardarPerfilEmpleadoWithEmptyExperiencia()</td>
-<td class="success">0.004s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGuardarPerfilEmpleadoWithEmptyHabilidades()</td>
-<td class="success">0.004s</td>
+<td class="success">0.008s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGuardarPerfilEmpleadoWithEmptyNombre()</td>
-<td class="success">0.003s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">testGuardarPerfilEmpleadoWithNonexistentEmpleado()</td>
 <td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">testGuardarPerfilEmpleadoWithNonexistentEmpleado()</td>
+<td class="success">0.010s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">testObtenerPerfilEmpleadoPorID()</td>
-<td class="success">0.003s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testObtenerPerfilEmpleadoPorIDWithNonexistentID()</td>
-<td class="success">0.003s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testObtenerTodosLosPerfilesDeEmpleados()</td>
-<td class="success">0.003s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -137,12 +137,12 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2023-09-29 09:22:00.136  INFO 18716 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.hrManagement.unit.logica.PerfilEmpleadoLogicaTest], using SpringBootContextLoader
-2023-09-29 09:22:00.138  INFO 18716 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.hrManagement.unit.logica.PerfilEmpleadoLogicaTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2023-09-29 09:22:00.138  INFO 18716 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.hrManagement.unit.logica.PerfilEmpleadoLogicaTest]: PerfilEmpleadoLogicaTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2023-09-29 09:22:00.141  INFO 18716 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.hrManagement.HrmanamentApplication for test class com.hrManagement.unit.logica.PerfilEmpleadoLogicaTest
-2023-09-29 09:22:00.142  INFO 18716 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2023-09-29 09:22:00.143  INFO 18716 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2210af68, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@d0efe34, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@703e6fc0, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@47d8d828, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@60144454, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1a11e93c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1952d5d1, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@184a474b, org.springframework.test.context.event.EventPublishingTestExecutionListener@5abe86f2, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@4ff3dc90, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@400074e2, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@aba13b6, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@249d9d05, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@755bd25a, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@36bf0f77]
+<pre>2023-09-29 14:55:15.822  INFO 21704 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.hrManagement.unit.logica.PerfilEmpleadoLogicaTest], using SpringBootContextLoader
+2023-09-29 14:55:15.823  INFO 21704 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.hrManagement.unit.logica.PerfilEmpleadoLogicaTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-09-29 14:55:15.824  INFO 21704 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.hrManagement.unit.logica.PerfilEmpleadoLogicaTest]: PerfilEmpleadoLogicaTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-09-29 14:55:15.826  INFO 21704 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.hrManagement.HrmanamentApplication for test class com.hrManagement.unit.logica.PerfilEmpleadoLogicaTest
+2023-09-29 14:55:15.827  INFO 21704 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-09-29 14:55:15.828  INFO 21704 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3cc82e23, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@542fa0b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@6a635f56, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@69fb817, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7bdb27d1, org.springframework.test.context.support.DirtiesContextTestExecutionListener@695b1803, org.springframework.test.context.transaction.TransactionalTestExecutionListener@19b26391, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@62963fb0, org.springframework.test.context.event.EventPublishingTestExecutionListener@40d1799c, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@71fbfa85, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7bdfb1c0, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@28677ab4, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6331fbbd, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@4db00a8c, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4be7f34b]
 </pre>
 </span>
 </div>
@@ -154,7 +154,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.2.1</a> at Sep 29, 2023, 9:22:00 AM</p>
+<a href="http://www.gradle.org">Gradle 8.2.1</a> at 29/09/2023, 2:55:16 p. m.</p>
 </div>
 </div>
 </body>
