@@ -28,67 +28,64 @@ public class PerfilEmpleadoLogica {
     }
 
     public boolean guardarPerfilEmpleado(PerfilEmpleadoDTO perfilEmpleadoDTO) {
-        // Verifica si alguno de los campos del DTO estÃ¡ vacÃ­o o nulo
-<span class="pc bpc" id="L32" title="1 of 4 branches missed.">        if (perfilEmpleadoDTO.getNombre() == null || perfilEmpleadoDTO.getNombre().isEmpty()</span>
-<span class="pc bpc" id="L33" title="2 of 4 branches missed.">                || perfilEmpleadoDTO.getHabilidades() == null || perfilEmpleadoDTO.getHabilidades().isEmpty()</span>
-<span class="pc bpc" id="L34" title="2 of 4 branches missed.">                || perfilEmpleadoDTO.getExperiencia() == null || perfilEmpleadoDTO.getExperiencia().isEmpty()</span>
-<span class="pc bpc" id="L35" title="2 of 4 branches missed.">                || perfilEmpleadoDTO.getCertificaciones() == null || perfilEmpleadoDTO.getCertificaciones().isEmpty()) {</span>
-<span class="fc" id="L36">            throw new CamposVaciosException(&quot;Los campos no pueden estar vacÃ­os&quot;);</span>
+<span class="pc bpc" id="L31" title="1 of 4 branches missed.">        if (perfilEmpleadoDTO.getNombre() == null || perfilEmpleadoDTO.getNombre().isEmpty()</span>
+<span class="pc bpc" id="L32" title="2 of 4 branches missed.">                || perfilEmpleadoDTO.getHabilidades() == null || perfilEmpleadoDTO.getHabilidades().isEmpty()</span>
+<span class="pc bpc" id="L33" title="2 of 4 branches missed.">                || perfilEmpleadoDTO.getExperiencia() == null || perfilEmpleadoDTO.getExperiencia().isEmpty()</span>
+<span class="pc bpc" id="L34" title="2 of 4 branches missed.">                || perfilEmpleadoDTO.getCertificaciones() == null || perfilEmpleadoDTO.getCertificaciones().isEmpty()) {</span>
+<span class="fc" id="L35">            throw new CamposVaciosException(&quot;Los campos no pueden estar vacÃ­os&quot;);</span>
         }
 
-<span class="fc" id="L39">        Optional&lt;Empleado&gt; empleadoOptional = empleadoRepository.findById(perfilEmpleadoDTO.getCodigo());</span>
+<span class="fc" id="L38">        Optional&lt;Empleado&gt; empleadoOptional = empleadoRepository.findById(perfilEmpleadoDTO.getCodigo());</span>
 
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (empleadoOptional.isEmpty()) {</span>
-<span class="nc" id="L42">            throw new EmpleadoNoExisteException();</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">        if (empleadoOptional.isEmpty()) {</span>
+<span class="nc" id="L41">            throw new EmpleadoNoExisteException();</span>
         }
 
-<span class="fc" id="L45">        PerfilEmpleado perfilEmpleado = new PerfilEmpleado();</span>
-<span class="fc" id="L46">        perfilEmpleado.setCodigo(perfilEmpleadoDTO.getCodigo());</span>
-<span class="fc" id="L47">        perfilEmpleado.setNombre(perfilEmpleadoDTO.getNombre());</span>
-<span class="fc" id="L48">        perfilEmpleado.setHabilidades(perfilEmpleadoDTO.getHabilidades());</span>
-<span class="fc" id="L49">        perfilEmpleado.setExperiencia(perfilEmpleadoDTO.getExperiencia());</span>
-<span class="fc" id="L50">        perfilEmpleado.setCertificaciones(perfilEmpleadoDTO.getCertificaciones());</span>
-<span class="fc" id="L51">        perfilEmpleado.setEliminar(false); // Cambiar el valor de la columna &quot;eliminar&quot; si es necesario</span>
+<span class="fc" id="L44">        PerfilEmpleado perfilEmpleado = new PerfilEmpleado();</span>
+<span class="fc" id="L45">        perfilEmpleado.setCodigo(perfilEmpleadoDTO.getCodigo());</span>
+<span class="fc" id="L46">        perfilEmpleado.setNombre(perfilEmpleadoDTO.getNombre());</span>
+<span class="fc" id="L47">        perfilEmpleado.setHabilidades(perfilEmpleadoDTO.getHabilidades());</span>
+<span class="fc" id="L48">        perfilEmpleado.setExperiencia(perfilEmpleadoDTO.getExperiencia());</span>
+<span class="fc" id="L49">        perfilEmpleado.setCertificaciones(perfilEmpleadoDTO.getCertificaciones());</span>
+<span class="fc" id="L50">        perfilEmpleado.setEliminar(false);</span>
 
         try {
-<span class="fc" id="L54">            perfilEmpleadoRepository.save(perfilEmpleado);</span>
-<span class="fc" id="L55">            return true;</span>
-<span class="nc" id="L56">        } catch (Exception e) {</span>
-            // Manejo de errores, puedes personalizarlo segÃºn tus necesidades
-<span class="nc" id="L58">            e.printStackTrace();</span>
-<span class="nc" id="L59">            return false;</span>
+<span class="fc" id="L53">            perfilEmpleadoRepository.save(perfilEmpleado);</span>
+<span class="fc" id="L54">            return true;</span>
+<span class="nc" id="L55">        } catch (Exception e) {</span>
+<span class="nc" id="L56">            e.printStackTrace();</span>
+<span class="nc" id="L57">            return false;</span>
         }
     }
 
     public static class EmpleadoNoExisteException extends RuntimeException {
         public EmpleadoNoExisteException() {
-<span class="fc" id="L65">            super(&quot;No existe Empleado&quot;);</span>
-<span class="fc" id="L66">        }</span>
+<span class="fc" id="L63">            super(&quot;No existe Empleado&quot;);</span>
+<span class="fc" id="L64">        }</span>
     }
     public PerfilEmpleado obtenerPerfilEmpleadoPorID(int id) {
-<span class="fc" id="L69">        return perfilEmpleadoRepository.findById(id).orElse(null);</span>
+<span class="fc" id="L67">        return perfilEmpleadoRepository.findById(id).orElse(null);</span>
     }
 
     public List&lt;PerfilEmpleado&gt; obtenerTodosLosPerfilesDeEmpleados() {
-<span class="fc" id="L73">        return perfilEmpleadoRepository.findAll();</span>
+<span class="fc" id="L71">        return perfilEmpleadoRepository.findAll();</span>
     }
     public boolean eliminarPerfilEmpleado(int codigo) {
-<span class="fc" id="L76">        Optional&lt;PerfilEmpleado&gt; perfilEmpleadoOptional = perfilEmpleadoRepository.findById(codigo);</span>
-<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (perfilEmpleadoOptional.isPresent()) {</span>
-<span class="fc" id="L78">            PerfilEmpleado perfilEmpleado = perfilEmpleadoOptional.get();</span>
-<span class="fc" id="L79">            perfilEmpleado.setEliminar(true); // Cambia el valor de la columna &quot;eliminar&quot; a false</span>
+<span class="fc" id="L74">        Optional&lt;PerfilEmpleado&gt; perfilEmpleadoOptional = perfilEmpleadoRepository.findById(codigo);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (perfilEmpleadoOptional.isPresent()) {</span>
+<span class="fc" id="L76">            PerfilEmpleado perfilEmpleado = perfilEmpleadoOptional.get();</span>
+<span class="fc" id="L77">            perfilEmpleado.setEliminar(true);</span>
 
             try {
-<span class="fc" id="L82">                perfilEmpleadoRepository.save(perfilEmpleado);</span>
-<span class="fc" id="L83">                return true;</span>
-<span class="nc" id="L84">            } catch (Exception e) {</span>
-                // Manejo de errores, puedes personalizarlo segÃºn tus necesidades
-<span class="nc" id="L86">                e.printStackTrace();</span>
-<span class="nc" id="L87">                return false;</span>
+<span class="fc" id="L80">                perfilEmpleadoRepository.save(perfilEmpleado);</span>
+<span class="fc" id="L81">                return true;</span>
+<span class="nc" id="L82">            } catch (Exception e) {</span>
+<span class="nc" id="L83">                e.printStackTrace();</span>
+<span class="nc" id="L84">                return false;</span>
             }
         }
 
-<span class="fc" id="L91">        return false; // No se encontrÃ³ el perfil del empleado con el cÃ³digo dado    }</span>
+<span class="fc" id="L88">        return false;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -19,7 +19,10 @@ repositories {
 }
 pitest {
 	junit5PluginVersion = '1.0.0'
-
+	excludedClasses = [
+			'com.hrManagement.controller.dto.**',
+			'com.hrManagement.modelo.**',
+	]
 }
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
