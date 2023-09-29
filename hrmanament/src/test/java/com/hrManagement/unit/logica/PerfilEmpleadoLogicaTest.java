@@ -40,65 +40,156 @@ class PerfilEmpleadoLogicaTest {
         MockitoAnnotations.openMocks(this);
         perfilEmpleadoLogica = new PerfilEmpleadoLogica(perfilEmpleadoRepository, empleadoRepository);
     }
+    @Test
+    public void testGuardarPerfilEmpleado() {
+        PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
+        perfilEmpleadoDTO.setCodigo(1);
+        perfilEmpleadoDTO.setNombre("Juan Pabloo");
+        perfilEmpleadoDTO.setHabilidades("Java, Spring");
+        perfilEmpleadoDTO.setExperiencia("5 years");
+        perfilEmpleadoDTO.setCertificaciones("Oracle Certified Professional");
 
-    @Test
-    void guardarPerfilEmpleado_camposVacios() {
-        PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
-        assertThrows(PerfilEmpleadoLogica.CamposVaciosException.class, () -> perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO));
-    }
-/*
-    @Test
-    void guardarPerfilEmpleado_empleadoNoExiste() {
-        PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
-        perfilEmpleadoDTO.setCodigo(1);
-        when(empleadoRepository.findById(1)).thenReturn(Optional.empty());
-        assertThrows(PerfilEmpleadoLogica.EmpleadoNoExisteException.class, () -> perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO));
-    }
-*/
-    @Test
-    void guardarPerfilEmpleado_guardadoExitoso() {
-        PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
-        perfilEmpleadoDTO.setCodigo(1);
-        perfilEmpleadoDTO.setNombre("Nombre");
-        perfilEmpleadoDTO.setHabilidades("Habilidades");
-        perfilEmpleadoDTO.setExperiencia("Experiencia");
-        perfilEmpleadoDTO.setCertificaciones("Certificaciones");
         Empleado empleado = new Empleado();
         empleado.setCodigo(1);
+
         when(empleadoRepository.findById(1)).thenReturn(Optional.of(empleado));
         when(perfilEmpleadoRepository.save(any(PerfilEmpleado.class))).thenReturn(new PerfilEmpleado());
-        assertTrue(perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO));
+
+        boolean result = perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO);
+
+        assertTrue(result);
+        verify(perfilEmpleadoRepository, times(1)).save(any(PerfilEmpleado.class));
     }
 
     @Test
-    void obtenerPerfilEmpleadoPorID() {
+    public void testGuardarPerfilEmpleadoWithEmptyNombre() {
+        PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
+        perfilEmpleadoDTO.setCodigo(1);
+        perfilEmpleadoDTO.setNombre("");
+        perfilEmpleadoDTO.setHabilidades("Java, Spring");
+        perfilEmpleadoDTO.setExperiencia("5 years");
+        perfilEmpleadoDTO.setCertificaciones("Oracle Certified Professional");
+
+        assertThrows(PerfilEmpleadoLogica.CamposVaciosException.class, () -> {
+            perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO);
+        });
+    }
+
+    @Test
+    public void testGuardarPerfilEmpleadoWithEmptyHabilidades() {
+        PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
+        perfilEmpleadoDTO.setCodigo(1);
+        perfilEmpleadoDTO.setNombre("Juan Pablo");
+        perfilEmpleadoDTO.setHabilidades("");
+        perfilEmpleadoDTO.setExperiencia("5 years");
+        perfilEmpleadoDTO.setCertificaciones("Oracle Certified Professional");
+
+        assertThrows(PerfilEmpleadoLogica.CamposVaciosException.class, () -> {
+            perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO);
+        });
+    }
+
+    @Test
+    public void testGuardarPerfilEmpleadoWithEmptyExperiencia() {
+        PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
+        perfilEmpleadoDTO.setCodigo(1);
+        perfilEmpleadoDTO.setNombre("Juan Pablo");
+        perfilEmpleadoDTO.setHabilidades("Java, Spring");
+        perfilEmpleadoDTO.setExperiencia("");
+        perfilEmpleadoDTO.setCertificaciones("Oracle Certified Professional");
+
+        assertThrows(PerfilEmpleadoLogica.CamposVaciosException.class, () -> {
+            perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO);
+        });
+    }
+
+    @Test
+    public void testGuardarPerfilEmpleadoWithEmptyCertificaciones() {
+        PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
+        perfilEmpleadoDTO.setCodigo(1);
+        perfilEmpleadoDTO.setNombre("Juan Pablo");
+        perfilEmpleadoDTO.setHabilidades("Java, Spring");
+        perfilEmpleadoDTO.setExperiencia("5 years");
+        perfilEmpleadoDTO.setCertificaciones("");
+
+        assertThrows(PerfilEmpleadoLogica.CamposVaciosException.class, () -> {
+            perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO);
+        });
+    }
+
+    @Test
+    public void testGuardarPerfilEmpleadoWithNonexistentEmpleado() {
+        PerfilEmpleadoDTO perfilEmpleadoDTO = new PerfilEmpleadoDTO();
+        perfilEmpleadoDTO.setCodigo(1);
+        perfilEmpleadoDTO.setNombre("Juan Pablo");
+        perfilEmpleadoDTO.setHabilidades("Java, Spring");
+        perfilEmpleadoDTO.setExperiencia("5 years");
+        perfilEmpleadoDTO.setCertificaciones("Oracle Certified Professional");
+
+        when(empleadoRepository.findById(1)).thenReturn(Optional.empty());
+
+        assertThrows(PerfilEmpleadoLogica.EmpleadoNoExisteException.class, () -> {
+            perfilEmpleadoLogica.guardarPerfilEmpleado(perfilEmpleadoDTO);
+        });
+    }
+    @Test
+    public void testObtenerPerfilEmpleadoPorID() {
         PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
         perfilEmpleado.setCodigo(1);
+
         when(perfilEmpleadoRepository.findById(1)).thenReturn(Optional.of(perfilEmpleado));
-        assertEquals(perfilEmpleado, perfilEmpleadoLogica.obtenerPerfilEmpleadoPorID(1));
+
+        PerfilEmpleado result = perfilEmpleadoLogica.obtenerPerfilEmpleadoPorID(1);
+
+        assertNotNull(result);
+        assertEquals(1, result.getCodigo());
     }
 
     @Test
-    void obtenerTodosLosPerfilesDeEmpleados() {
+    public void testObtenerPerfilEmpleadoPorIDWithNonexistentID() {
+        when(perfilEmpleadoRepository.findById(1)).thenReturn(Optional.empty());
+
+        PerfilEmpleado result = perfilEmpleadoLogica.obtenerPerfilEmpleadoPorID(1);
+
+        assertNull(result);
+    }
+
+    @Test
+    public void testObtenerTodosLosPerfilesDeEmpleados() {
         List<PerfilEmpleado> perfilEmpleadoList = new ArrayList<>();
         perfilEmpleadoList.add(new PerfilEmpleado());
+        perfilEmpleadoList.add(new PerfilEmpleado());
+
         when(perfilEmpleadoRepository.findAll()).thenReturn(perfilEmpleadoList);
-        assertEquals(perfilEmpleadoList, perfilEmpleadoLogica.obtenerTodosLosPerfilesDeEmpleados());
+
+        List<PerfilEmpleado> result = perfilEmpleadoLogica.obtenerTodosLosPerfilesDeEmpleados();
+
+        assertNotNull(result);
+        assertEquals(2, result.size());
     }
 
     @Test
-    void eliminarPerfilEmpleado_perfilEmpleadoNoExiste() {
-        when(perfilEmpleadoRepository.findById(1)).thenReturn(Optional.empty());
-        assertFalse(perfilEmpleadoLogica.eliminarPerfilEmpleado(1));
-    }
-
-    @Test
-    void eliminarPerfilEmpleado_eliminacionExitosa() {
+    public void testEliminarPerfilEmpleado() {
         PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
         perfilEmpleado.setCodigo(1);
+
         when(perfilEmpleadoRepository.findById(1)).thenReturn(Optional.of(perfilEmpleado));
         when(perfilEmpleadoRepository.save(any(PerfilEmpleado.class))).thenReturn(new PerfilEmpleado());
-        assertTrue(perfilEmpleadoLogica.eliminarPerfilEmpleado(1));
+
+        boolean result = perfilEmpleadoLogica.eliminarPerfilEmpleado(1);
+
+        assertTrue(result);
         assertTrue(perfilEmpleado.isEliminar());
+        verify(perfilEmpleadoRepository, times(1)).save(any(PerfilEmpleado.class));
+    }
+
+    @Test
+    public void testEliminarPerfilEmpleadoWithNonexistentID() {
+        when(perfilEmpleadoRepository.findById(1)).thenReturn(Optional.empty());
+
+        boolean result = perfilEmpleadoLogica.eliminarPerfilEmpleado(1);
+
+        assertFalse(result);
+        verify(perfilEmpleadoRepository, never()).save(any(PerfilEmpleado.class));
     }
 }

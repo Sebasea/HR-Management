@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class EmpleadoLogica {
@@ -30,18 +32,19 @@ public class EmpleadoLogica {
         empleado.setRol(RolEnum.valueOf(empleadoDTO.getRol().name()));
         empleado.setEmail(empleadoDTO.getEmail());
         empleado.setNumeroTelefonico(empleadoDTO.getNumeroTelefonico());
-        empleado.setResponsabilidades(empleado.getResponsabilidades());
+        empleado.setResponsabilidades(empleadoDTO.getResponsabilidades());
         empleado.setEliminar(false);
 
         try {
             empleadoRepository.save(empleado);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            // log the exception instead of printing the stack trace
+            Logger logger = LoggerFactory.getLogger(EmpleadoLogica.class);
+            logger.error("Error while saving Empleado object", e);
             return false;
         }
     }
-
     public Empleado obtenerEmpleadoPorID(int id) {
         return empleadoRepository.findById(id).orElse(null);
     }
@@ -84,7 +87,8 @@ public class EmpleadoLogica {
                 empleadoRepository.save(empleado);
                 return true;
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger logger = LoggerFactory.getLogger(EmpleadoLogica.class);
+                logger.error("Error while saving Empleado object", e);
                 return false;
             }
         }

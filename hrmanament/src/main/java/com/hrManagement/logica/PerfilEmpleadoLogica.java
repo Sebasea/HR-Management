@@ -28,11 +28,20 @@ public class PerfilEmpleadoLogica {
     }
 
     public boolean guardarPerfilEmpleado(PerfilEmpleadoDTO perfilEmpleadoDTO) {
-        if (perfilEmpleadoDTO.getNombre() == null || perfilEmpleadoDTO.getNombre().isEmpty()
-                || perfilEmpleadoDTO.getHabilidades() == null || perfilEmpleadoDTO.getHabilidades().isEmpty()
-                || perfilEmpleadoDTO.getExperiencia() == null || perfilEmpleadoDTO.getExperiencia().isEmpty()
-                || perfilEmpleadoDTO.getCertificaciones() == null || perfilEmpleadoDTO.getCertificaciones().isEmpty()) {
-            throw new CamposVaciosException("Los campos no pueden estar vacíos");
+        if (perfilEmpleadoDTO.getNombre() == null || perfilEmpleadoDTO.getNombre().isEmpty()) {
+            throw new CamposVaciosException("El nombre no puede estar vacío");
+        }
+
+        if (perfilEmpleadoDTO.getHabilidades() == null || perfilEmpleadoDTO.getHabilidades().isEmpty()) {
+            throw new CamposVaciosException("Las habilidades no pueden estar vacías");
+        }
+
+        if (perfilEmpleadoDTO.getExperiencia() == null || perfilEmpleadoDTO.getExperiencia().isEmpty()) {
+            throw new CamposVaciosException("La experiencia no puede estar vacía");
+        }
+
+        if (perfilEmpleadoDTO.getCertificaciones() == null || perfilEmpleadoDTO.getCertificaciones().isEmpty()) {
+            throw new CamposVaciosException("Las certificaciones no pueden estar vacías");
         }
 
         Optional<Empleado> empleadoOptional = empleadoRepository.findById(perfilEmpleadoDTO.getCodigo());
@@ -42,7 +51,6 @@ public class PerfilEmpleadoLogica {
         }
 
         PerfilEmpleado perfilEmpleado = new PerfilEmpleado();
-        perfilEmpleado.setCodigo(perfilEmpleadoDTO.getCodigo());
         perfilEmpleado.setNombre(perfilEmpleadoDTO.getNombre());
         perfilEmpleado.setHabilidades(perfilEmpleadoDTO.getHabilidades());
         perfilEmpleado.setExperiencia(perfilEmpleadoDTO.getExperiencia());
@@ -53,7 +61,6 @@ public class PerfilEmpleadoLogica {
             perfilEmpleadoRepository.save(perfilEmpleado);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -80,7 +87,6 @@ public class PerfilEmpleadoLogica {
                 perfilEmpleadoRepository.save(perfilEmpleado);
                 return true;
             } catch (Exception e) {
-                e.printStackTrace();
                 return false;
             }
         }
